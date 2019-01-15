@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  entry: './client/app.js',
+  entry: './client/src/app/app.module.js',
   mode: 'development',
   output: {
     filename: 'main.js',

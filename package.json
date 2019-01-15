@@ -6,6 +6,7 @@
   "scripts": {
     "pretest": "eslint --ignore-path .gitignore .",
     "start:dev": "webpack-dev-server",
+    "cypress:open": "cypress open",
     "build": "webpack"
   },
   "author": "",
@@ -16,7 +17,9 @@
     "mongoose": "^5.4.4"
   },
   "devDependencies": {
+    "cypress": "^3.1.4",
     "eslint": "^5.12.0",
+    "eslint-plugin-cypress": "^2.2.0",
     "webpack": "^4.28.4",
     "webpack-cli": "^3.2.1",
     "webpack-dev-server": "^3.1.14"

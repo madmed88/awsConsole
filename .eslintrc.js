@@ -1,5 +1,9 @@
 module.exports = {
+    "plugins": [
+        "cypress"
+    ],
     "env": {
+        "cypress/globals": true,
         "browser": true,
         "commonjs": true,
         "es6": true,

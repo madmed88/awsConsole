@@ -25,7 +25,11 @@ app.use(function(req, res, next) {
 
 app.use('/instances', instance);
 
-const port = 1234;
-app.listen(port, () => {
-    console.log('Server is up and running on port numner ' + port);
+// Create link to Angular build directory
+var distDir = __dirname + '/../client/dist/';
+app.use(express.static(distDir));
+
+const server = app.listen(process.env.PORT || 1234, function () {
+  var port = server.address().port;
+  console.log("App now running on port", port);
 });

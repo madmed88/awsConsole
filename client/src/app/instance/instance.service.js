@@ -1,6 +1,6 @@
 export class InstanceService {
   constructor($http) {
-    this.apiUrl = "http://localhost:1234/instances";
+    this.apiUrl = "/instances";
     this.$http = $http;
   }
 

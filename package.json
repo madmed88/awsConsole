@@ -5,9 +5,11 @@
   "main": "server/app.js",
   "scripts": {
     "pretest": "eslint --ignore-path .gitignore .",
+    "start": "node server/app.js",
     "start:dev": "webpack-dev-server",
     "cypress:open": "cypress open",
-    "build": "webpack"
+    "build": "webpack",
+    "postinstall": "webpack"
   },
   "author": "",
   "license": "ISC",

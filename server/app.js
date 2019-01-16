@@ -3,6 +3,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
+const webpack = require('webpack');
+const webpackDevMiddleware = require('webpack-dev-middleware');
+const webpackHotMiddleware = require('webpack-hot-middleware');
+const webpackDevConfig = require('../webpack.dev.config');
+
 const instance = require('./instance/instance.route');
 const app = express();
 
@@ -24,6 +29,12 @@ app.use(function(req, res, next) {
 });
 
 app.use('/instances', instance);
+
+if (process.env.NODE_ENV === 'development') {
+  const compiler = webpack(webpackDevConfig);
+  app.use(webpackDevMiddleware(compiler, {}));
+  app.use(webpackHotMiddleware(compiler));
+}
 
 // Create link to Angular build directory
 var distDir = __dirname + '/../client/dist/';

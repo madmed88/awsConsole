@@ -1,7 +1,5 @@
 export const AppComponent = {
   template: `
-    <div>
-        <dashboard></dashboard>
-    </div>
+    <div ng-view></div>
   `
 };

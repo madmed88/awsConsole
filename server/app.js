@@ -8,6 +8,10 @@ const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const webpackDevConfig = require('../webpack.dev.config');
 
+var passport = require('passport');
+require('./passport');
+const user = require('./user/user.route');
+
 const instance = require('./instance/instance.route');
 const app = express();
 
@@ -27,6 +31,9 @@ app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
+
+app.use(passport.initialize());
+app.use('/users', user);
 
 app.use('/instances', instance);
 

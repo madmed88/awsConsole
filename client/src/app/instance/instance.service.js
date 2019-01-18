@@ -1,5 +1,7 @@
+/* @ngInject */
 export class InstanceService {
   constructor($http) {
+    'ngInject';
     this.apiUrl = "/instances";
     this.$http = $http;
   }

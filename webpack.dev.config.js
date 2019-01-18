@@ -21,7 +21,8 @@ module.exports = {
       }, {
         loader: 'less-loader' // compiles Less to CSS
       }]
-    }]
+    },
+    { test: /\.js$/, exclude: /node_modules/, loader: "babel-loader" }]
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),

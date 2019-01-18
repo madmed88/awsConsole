@@ -18,6 +18,7 @@ export const loginComponent = {
   </div>
   `,
   controller: function ($location, authentication) {
+    'ngInject';
     this.credentials = {
       email : "",
       password : ""

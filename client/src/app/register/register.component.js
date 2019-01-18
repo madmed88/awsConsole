@@ -21,6 +21,7 @@ export const registerComponent = {
     </div>
   `,
   controller: function ($location, authentication) {
+    'ngInject';
     this.credentials = {
       name : "",
       email : "",

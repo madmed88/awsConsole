@@ -20,6 +20,7 @@ export const dashboardComponent = {
     </div>
   `,
   controller: function (instanceService) {
+    'ngInject';
     instanceService.list()
       .then((response) => this.data = response.data)
   }

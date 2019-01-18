@@ -1,4 +1,5 @@
 export function appConfig($routeProvider) {
+  'ngInject';
   $routeProvider
     .when('/', {
       template: '<dashboard></dashboard>'

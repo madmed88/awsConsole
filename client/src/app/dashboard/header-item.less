@@ -1,0 +1,13 @@
+.HeaderItem {
+  width: 100%;
+}
+.HeaderItem.selected {
+  &:after {
+    content: '\25b2';   // BLACK UP-POINTING TRIANGLE
+  }
+}
+.HeaderItem.selected.reverse{
+  &:after {
+    content: '\25bc';   // BLACK DOWN-POINTING TRIANGLE
+  }
+}

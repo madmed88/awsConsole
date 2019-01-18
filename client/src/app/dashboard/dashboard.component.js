@@ -3,14 +3,22 @@ import './dashboard.less';
 export const dashboardComponent = {
   template: `
     <div class="grid">
-      <span><strong>Name</strong></span>
-      <span><strong>Instance ID</strong></span>
-      <span><strong>Instance Type</strong></span>
-      <span><strong>State</strong></span>
-      <span><strong>Availabilty Zone</strong></span>
-      <span><strong>PublicIP</strong></span>
-      <span><strong>PrivateIP</strong></span>
-      <span ng-repeat-start="instance in $ctrl.data">{{instance.name}}</span>
+      <header-item on-click="$ctrl.sortBy(propertyName)" label="'Name'"
+        header-property="'name'" selected-property="$ctrl.propertyName" reverse="$ctrl.reverse"></header-item>
+      <header-item on-click="$ctrl.sortBy(propertyName)" label="'Instance ID'"
+        header-property="'id'" selected-property="$ctrl.propertyName" reverse="$ctrl.reverse"></header-item>
+      <header-item on-click="$ctrl.sortBy(propertyName)" label="'Instance Type'"
+        header-property="'type'" selected-property="$ctrl.propertyName" reverse="$ctrl.reverse"></header-item>
+      <header-item on-click="$ctrl.sortBy(propertyName)" label="'State'"
+        header-property="'state'" selected-property="$ctrl.propertyName" reverse="$ctrl.reverse"></header-item>
+      <header-item on-click="$ctrl.sortBy(propertyName)" label="'Availability Zone'"
+        header-property="'az'" selected-property="$ctrl.propertyName" reverse="$ctrl.reverse"></header-item>
+      <header-item on-click="$ctrl.sortBy(propertyName)" label="'Public IP'"
+        header-property="'publicIP'" selected-property="$ctrl.propertyName" reverse="$ctrl.reverse"></header-item>
+      <header-item on-click="$ctrl.sortBy(propertyName)" label="'Private IP'"
+        header-property="'privateIP'" selected-property="$ctrl.propertyName" reverse="$ctrl.reverse"></header-item>
+
+      <span ng-repeat-start="instance in $ctrl.data | orderBy:$ctrl.propertyName:$ctrl.reverse">{{instance.name}}</span>
       <span>{{instance.id}}</span>
       <span>{{instance.type}}</span>
       <span>{{instance.state}}</span>
@@ -22,7 +30,12 @@ export const dashboardComponent = {
   controller: function (instanceService) {
     'ngInject';
     instanceService.list()
-      .then((response) => this.data = response.data)
+      .then((response) => this.data = response.data);
+
+    this.sortBy = function (propertyName) {
+      this.reverse = (this.propertyName === propertyName) ? !this.reverse : false;
+      this.propertyName = propertyName;
+    };
   }
 };
 

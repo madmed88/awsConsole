@@ -1,3 +1,5 @@
+import './app.less';
+
 export const AppComponent = {
   template: `
     <button ng-if="$ctrl.authentication.isLoggedIn()" ng-click="$ctrl.logout()">Logout</button>

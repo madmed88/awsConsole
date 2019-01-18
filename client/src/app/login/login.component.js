@@ -1,20 +1,15 @@
 export const loginComponent = {
   template: `
-  <div>
-    <h1 class="form-signin-heading">Sign in</h1>
-    <p class="lead">Not a member? Please <a href="#!register">register</a> instead.</p>
-
-    <form ng-submit="$ctrl.onSubmit()">
-      <div class="form-group">
-        <label for="email">Email address</label>
-        <input type="email" class="form-control" id="email" placeholder="Enter email" ng-model="$ctrl.credentials.email">
-      </div>
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" class="form-control" id="password" placeholder="Password" ng-model="$ctrl.credentials.password">
-      </div>
-      <button type="submit" class="btn btn-default">Sign in!</button>
+  <div class="Login panel">
+    <div class="Login-logoArea logo-area">
+      <div class="Login-logo logo"></div>
+    </div>
+    <form class="Login-form form" ng-submit="$ctrl.onSubmit()">
+      <input type="email" class="form-control" id="email" placeholder="Enter email" ng-model="$ctrl.credentials.email">
+      <input type="password" class="form-control" id="password" placeholder="Password" ng-model="$ctrl.credentials.password">
+      <button type="submit" class="Login-button button">Sign in</button>
     </form>
+    <p>Not a member? Please <a href="#!register">register</a> instead.</p>
   </div>
   `,
   controller: function ($location, authentication) {

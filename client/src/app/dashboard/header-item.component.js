@@ -6,10 +6,14 @@ export const headerItemComponent = {
     headerProperty: '<',
     selectedProperty: '<',
     reverse: '<',
-    onClick: '&'
+    onClick: '&',
+    onFilter: '&'
   },
   template: `
-    <button class="HeaderItem" ng-click="$ctrl.onClick({propertyName: $ctrl.headerProperty})"
+    <input class="HeaderItem-filterInput" ng-model="$ctrl.query"
+     ng-change="$ctrl.onFilter({propertyName: $ctrl.headerProperty, query: $ctrl.query})"/>
+
+     <button class="HeaderItem-sortButton" ng-click="$ctrl.onClick({propertyName: $ctrl.headerProperty})"
      ng-class="{reverse: $ctrl.reverse, selected: $ctrl.selectedProperty === $ctrl.headerProperty}">
       {{$ctrl.label}}
     </button>

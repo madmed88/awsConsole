@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const InstanceSchema = new Schema({
     name: {type: String, required: true, max: 100},
-    id: {type: String, required: true, max: 100},
+    id: {type: String, required: true, max: 100, unique: true},
     type: {type: String, required: true, max: 100},
     state: {type: String, required: true, max: 100},
     az: {type: String, required: true, max: 100},

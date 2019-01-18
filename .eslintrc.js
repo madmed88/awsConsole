@@ -4,6 +4,7 @@ module.exports = {
     ],
     "env": {
         "cypress/globals": true,
+        "jasmine": true,
         "browser": true,
         "commonjs": true,
         "es6": true,

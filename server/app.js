@@ -3,11 +3,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
-const webpack = require('webpack');
-const webpackDevMiddleware = require('webpack-dev-middleware');
-const webpackHotMiddleware = require('webpack-hot-middleware');
-const webpackDevConfig = require('../webpack.dev.config');
-
 var passport = require('passport');
 require('./passport');
 const user = require('./user/user.route');
@@ -38,6 +33,10 @@ app.use('/users', user);
 app.use('/instances', instance);
 
 if (process.env.NODE_ENV === 'development') {
+  const webpack = require('webpack');
+  const webpackDevMiddleware = require('webpack-dev-middleware');
+  const webpackHotMiddleware = require('webpack-hot-middleware');
+  const webpackDevConfig = require('../webpack.dev.config');
   const compiler = webpack(webpackDevConfig);
   app.use(webpackDevMiddleware(compiler, {}));
   app.use(webpackHotMiddleware(compiler));

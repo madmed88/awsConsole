@@ -4,6 +4,7 @@ export const navbarComponent = {
   template: `
     <div class="Navbar">
       <div class="Navbar-logo">
+        <logo></logo>
       </div>
       <button ng-click="$ctrl.logout()" class="logout-button">Sign out</button>
     </div>

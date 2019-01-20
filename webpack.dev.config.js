@@ -22,7 +22,9 @@ module.exports = {
         loader: 'less-loader' // compiles Less to CSS
       }]
     },
-    { test: /\.js$/, exclude: /node_modules/, loader: "babel-loader" }]
+    { test: /\.js$/, exclude: /node_modules/, loader: "babel-loader" },
+    { test: /\.svg$/, loader: 'svg-inline-loader'}
+  ]
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),

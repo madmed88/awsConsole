@@ -2,6 +2,7 @@ import './dashboard.less';
 
 export const dashboardComponent = {
   template: `
+    <navbar></navbar>
     <div class="grid">
       <header-item on-click="$ctrl.sortBy(propertyName)" on-filter="$ctrl.addFilter(propertyName, query)" label="'Name'"
         header-property="'name'" selected-property="$ctrl.propertyName" reverse="$ctrl.reverse"></header-item>

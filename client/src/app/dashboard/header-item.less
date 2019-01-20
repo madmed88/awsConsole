@@ -1,6 +1,28 @@
+header-item {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
 .HeaderItem-sortButton, .HeaderItem-filterInput {
   width: 100%;
+  height: 35px;
+  box-sizing: border-box;
+  padding: 0 4px;
+  border: none;
 }
+
+.HeaderItem-sortButton {
+  cursor: pointer;
+  transition: background-color 0.25s ease 0s;
+  background-color: #00a9e0;
+  color: #ffffff;
+  border: none;
+}
+
+.HeaderItem-sortButton:hover {
+  background-color: #10afff;
+}
+
 .HeaderItem-sortButton.selected {
   &:after {
     content: '\25b2';   // BLACK UP-POINTING TRIANGLE

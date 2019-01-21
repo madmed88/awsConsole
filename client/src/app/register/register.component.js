@@ -22,13 +22,15 @@ export const registerComponent = {
     };
 
     this.onSubmit = function () {
-      authentication
+      if (this.credentials.name && this.credentials.email && this.credentials.password) {
+        authentication
         .register(this.credentials)
         .then(() => {
           $location.path('/');
         }, (res) => {
           alert(res.data.message);
         });
+      }
     };
   }
 }

@@ -7,14 +7,20 @@ module.exports.register = function(req, res) {
   user.name = req.body.name;
   user.email = req.body.email;
 
-  user.setPassword(req.body.password);
+  User.findOne({ 'email' :  user.email }, (err, existingUser) => {
+    if (existingUser) {
+      res.status(500).json({message: 'That email is already taken.'});
+    } else {
+      user.setPassword(req.body.password);
 
-  user.save(function() {
-    const token = user.generateJwt();
-    res.status(200);
-    res.json({
-      "token" : token
-    });
+      user.save(function() {
+        const token = user.generateJwt();
+        res.status(200);
+        res.json({
+          "token" : token
+        });
+      });
+    }
   });
 
 };

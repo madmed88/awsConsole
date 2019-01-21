@@ -32,6 +32,7 @@ export const dashboardComponent = {
   controller: function (instanceService) {
     'ngInject';
     this.filters = new Map();
+    this.propertyName = 'name';
     this.limit = 20;
 
     instanceService.list()

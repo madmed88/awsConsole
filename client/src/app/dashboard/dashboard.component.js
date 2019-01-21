@@ -22,7 +22,7 @@ export const dashboardComponent = {
       <span ng-repeat-start="instance in $ctrl.data | filter:$ctrl.filterFunction | orderBy:$ctrl.propertyName:$ctrl.reverse | limitTo:$ctrl.limit">{{instance.name}}</span>
       <span>{{instance.id}}</span>
       <span>{{instance.type}}</span>
-      <span>{{instance.state}}</span>
+      <span ng-class="instance.state === 'running' ? 'running' : 'stopped'">{{instance.state}}</span>
       <span>{{instance.az}}</span>
       <span>{{instance.publicIP}}</span>
       <span ng-repeat-end>{{instance.privateIP}}</span>

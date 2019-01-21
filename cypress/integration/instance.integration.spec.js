@@ -10,14 +10,21 @@ context('Instance integration', () => {
     privateIP: '10.25.30.46'
   };
 
-  let instanceCount = 0
+  let instanceCount = 0, token;
+
+  it('should login', () => {
+    cy.request('POST', 'http://localhost:1234/users/login', {email : 'medbelh@gmail.com', password : 'madmed88'})
+      .then((response) => {
+        token = response.body.token;
+      });
+  })
 
   it('should create new instances', () => {
-    cy.request('GET', 'http://localhost:1234/instances')
+    cy.request({method: 'GET', url: 'http://localhost:1234/instances', headers: {Authorization: 'Bearer '+ token}})
       .then((response) => {
         instanceCount = response.body.length;
       });
-    cy.request('POST', 'http://localhost:1234/instances', instance)
+    cy.request({method: 'POST', url: 'http://localhost:1234/instances', headers: {Authorization: 'Bearer '+ token}, body: instance})
       .should((response) => {
         expect(response.status).to.eq(200)
         expect(response.body.name).to.eq('instance99');
@@ -25,7 +32,7 @@ context('Instance integration', () => {
   });
 
   it('should get newly created instance by its id', () => {
-    cy.request('GET', 'http://localhost:1234/instances/a-52355mbel')
+    cy.request({method: 'GET', url: 'http://localhost:1234/instances/a-52355mbel', headers: {Authorization: 'Bearer '+ token}})
       .should((response) => {
         expect(response.status).to.eq(200)
         expect(response.body.name).to.eq('instance99');
@@ -33,11 +40,11 @@ context('Instance integration', () => {
   });
 
   it('should update newly created instance by its id', () => {
-    cy.request('PUT', 'http://localhost:1234/instances/a-52355mbel', { name: 'instance100' })
+    cy.request({method: 'PUT', url: 'http://localhost:1234/instances/a-52355mbel', headers: {Authorization: 'Bearer '+ token}, body: { name: 'instance100' }})
       .should((response) => {
         expect(response.status).to.eq(200)
       });
-    cy.request('GET', 'http://localhost:1234/instances/a-52355mbel')
+    cy.request({method: 'GET', url: 'http://localhost:1234/instances/a-52355mbel', headers: {Authorization: 'Bearer '+ token}})
       .should((response) => {
         expect(response.status).to.eq(200)
         expect(response.body.name).to.eq('instance100');
@@ -45,11 +52,11 @@ context('Instance integration', () => {
   });
 
   it('should delete newly created instance by its id', () => {
-    cy.request('DELETE', 'http://localhost:1234/instances/a-52355mbel')
+    cy.request({method: 'DELETE', url: 'http://localhost:1234/instances/a-52355mbel', headers: {Authorization: 'Bearer '+ token}})
       .should((response) => {
         expect(response.status).to.eq(200)
       });
-    cy.request('GET', 'http://localhost:1234/instances')
+    cy.request({method: 'GET', url: 'http://localhost:1234/instances', headers: {Authorization: 'Bearer '+ token}})
       .should((response) => {
         expect(response.body.length).to.eq(instanceCount);
       });

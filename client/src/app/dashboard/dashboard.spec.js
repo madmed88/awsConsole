@@ -25,7 +25,7 @@ describe('dashboard', () => {
       {name: 'myInstance', type: 'small', ip: '22.22.22.22'}
     ];
     const ctrl = $componentController('dashboard');
-    ctrl.addFilter('type', 'small');
+    ctrl.addFilter('type', 'Small');
     expect(instancesList.filter(ctrl.filterFunction).length).toEqual(2);
     ctrl.addFilter('name', 'my');
     expect(instancesList.filter(ctrl.filterFunction).length).toEqual(1);

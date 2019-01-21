@@ -48,7 +48,7 @@ export const dashboardComponent = {
 
     this.filterFunction = (instance) => {
       return Array.from(this.filters)
-        .every((filter) => instance[filter[0]].match(filter[1]));
+        .every((filter) => instance[filter[0]].toLowerCase().match(filter[1].toLowerCase()));
     }
 
     this.showMore = () => {

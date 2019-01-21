@@ -19,7 +19,7 @@ export const dashboardComponent = {
       <header-item on-click="$ctrl.sortBy(propertyName)" on-filter="$ctrl.addFilter(propertyName, query)" label="'Private IP'"
         header-property="'privateIP'" selected-property="$ctrl.propertyName" reverse="$ctrl.reverse"></header-item>
 
-      <span ng-repeat-start="instance in $ctrl.data | filter:$ctrl.filterFunction | orderBy:$ctrl.propertyName:$ctrl.reverse">{{instance.name}}</span>
+      <span ng-repeat-start="instance in $ctrl.data | filter:$ctrl.filterFunction | orderBy:$ctrl.propertyName:$ctrl.reverse | limitTo:$ctrl.limit">{{instance.name}}</span>
       <span>{{instance.id}}</span>
       <span>{{instance.type}}</span>
       <span>{{instance.state}}</span>
@@ -27,10 +27,12 @@ export const dashboardComponent = {
       <span>{{instance.publicIP}}</span>
       <span ng-repeat-end>{{instance.privateIP}}</span>
     </div>
+    <button class="button showMore-button" ng-if="$ctrl.data.length > $ctrl.limit" ng-click="$ctrl.showMore()">Show more</div>
   `,
   controller: function (instanceService) {
     'ngInject';
     this.filters = new Map();
+    this.limit = 20;
 
     instanceService.list()
       .then((response) => this.data = response.data);
@@ -47,6 +49,10 @@ export const dashboardComponent = {
     this.filterFunction = (instance) => {
       return Array.from(this.filters)
         .every((filter) => instance[filter[0]].match(filter[1]));
+    }
+
+    this.showMore = () => {
+      this.limit += 20;
     }
   }
 };

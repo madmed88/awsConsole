@@ -19,7 +19,7 @@ export const dashboardComponent = {
       <header-item on-click="$ctrl.sortBy(propertyName)" on-filter="$ctrl.addFilter(propertyName, query)" label="'Private IP'"
         header-property="'privateIP'" selected-property="$ctrl.propertyName" reverse="$ctrl.reverse"></header-item>
 
-      <span ng-repeat-start="instance in $ctrl.data | filter:$ctrl.filterFunction | orderBy:$ctrl.propertyName:$ctrl.reverse | limitTo:$ctrl.limit">{{instance.name}}</span>
+      <span ng-repeat-start="instance in $ctrl.filteredInstances = ($ctrl.data | filter:$ctrl.filterFunction | orderBy:$ctrl.propertyName:$ctrl.reverse) | limitTo:$ctrl.limit">{{instance.name}}</span>
       <span>{{instance.id}}</span>
       <span>{{instance.type}}</span>
       <span ng-class="instance.state === 'running' ? 'running' : 'stopped'">{{instance.state}}</span>
@@ -27,7 +27,7 @@ export const dashboardComponent = {
       <span>{{instance.publicIP}}</span>
       <span ng-repeat-end>{{instance.privateIP}}</span>
     </div>
-    <button class="button showMore-button" ng-if="$ctrl.data.length > $ctrl.limit" ng-click="$ctrl.showMore()">Show more</div>
+    <button class="button showMore-button" ng-if="$ctrl.filteredInstances.length > $ctrl.limit" ng-click="$ctrl.showMore()">Show more</div>
   `,
   controller: function (instanceService) {
     'ngInject';
